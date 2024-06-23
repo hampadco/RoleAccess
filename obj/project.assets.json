@@ -4215,11 +4215,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Apple\\Desktop\\jwt-master\\jwt.csproj",
+      "projectUniqueName": "C:\\Users\\Apple\\Desktop\\New folder (3)\\RoleAccess\\jwt.csproj",
       "projectName": "jwt",
-      "projectPath": "C:\\Users\\Apple\\Desktop\\jwt-master\\jwt.csproj",
+      "projectPath": "C:\\Users\\Apple\\Desktop\\New folder (3)\\RoleAccess\\jwt.csproj",
       "packagesPath": "C:\\Users\\Apple\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Apple\\Desktop\\jwt-master\\obj\\",
+      "outputPath": "C:\\Users\\Apple\\Desktop\\New folder (3)\\RoleAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Apple\\AppData\\Roaming\\NuGet\\NuGet.Config"
