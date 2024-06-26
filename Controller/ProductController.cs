@@ -8,43 +8,86 @@ using Microsoft.AspNetCore.Mvc;
 public class ProductController:Controller
 {
     [HttpGet]
-    [Authorize(Roles="Admin")]
     public string AddProduct()
     {
-        return  "Add successsful";
+        //check if user has permission to add product
+
+        if(User.HasClaim(c => c.Type == "Permission" && c.Value == "AddProduct"))
+        {
+            return "Add successsful";
+        }
+        else
+        {
+            return "You do not have permission to add product";
+        }
+       
     }
 
    //update
     [HttpGet]
-    [Authorize (Roles="Admin")]
+
+    //permission to update product
+   
     public string UpdateProduct()
     {
-        return  "Update successsful";
+       //check if user has permission to update product
+        if(User.HasClaim(c => c.Type == "Permission" && c.Value == "UpdateProduct"))
+        {
+            return "Update successsful";
+        }
+        else
+        {
+            return "You do not have permission to update product";
+        }
     }
 
     //delete
     [HttpGet]
-    [Authorize (Roles="Admin")]
+
     public string DeleteProduct()
     {
-        return  "Delete successsful";
+        //check if user has permission to delete product
+        if(User.HasClaim(c => c.Type == "Permission" && c.Value == "DeleteProduct"))
+        {
+            return "Delete successsful";
+        }
+        else
+        {
+            return "You do not have permission to delete product";
+        }
     }
 
     //view
     [HttpGet]
-    [Authorize (Roles="Admin,clinet")]
+
 
     public string ViewProduct()
     {
-        return  "View successsful";
+       //check if user has permission to view product
+        if(User.HasClaim(c => c.Type == "Permission" && c.Value == "ViewProduct"))
+        {
+            return "View successsful";
+        }
+        else
+        {
+            return "You do not have permission to view product";
+        }
     }
 
     //search
     [HttpGet]
-    [Authorize (Roles="clinet")]
+   
     public string SearchProduct()
     {
-        return  "Search successsful";
+        //check if user has permission to search product
+        if(User.HasClaim(c => c.Type == "Permission" && c.Value == "SearchProduct"))
+        {
+            return "Search successsful";
+        }
+        else
+        {
+            return "You do not have permission to search product";
+        }
     }
     
 }

@@ -34,11 +34,28 @@ public class AuthController: Controller
             {
                 role.Add(db.Roles.Where(r => r.Id == item).FirstOrDefault().Name);
             }
+
+            //list of permissions
+             List<string> permission=new List<string>(); 
+            foreach (var item in UserRoles)
+            {
+                List<int> RolePermissions=db.RolePermissions.Where(rp => rp.RoleId == item).Select(rp => rp.PermissionId).ToList();
+
+                foreach (var item2 in RolePermissions)
+                {
+                    //not exist in list
+                    if(!permission.Contains(db.Permissions.Where(p => p.Id == item2).FirstOrDefault().Name))
+                                       
+                        permission.Add(db.Permissions.Where(p => p.Id == item2).FirstOrDefault().Name);
+                }
+            }
+
+
             
 
            
 
-            var token = GenerateToken(username,role.ToArray());
+            var token = GenerateToken(username,permission.ToArray());
             return token;
         }
         else
@@ -49,7 +66,7 @@ public class AuthController: Controller
 
 
     //generate token
-    private string GenerateToken(string username, string[] role)
+    private string GenerateToken(string username,  string[] permission)
     {
 
         //secret key
@@ -61,7 +78,15 @@ public class AuthController: Controller
         {
             new Claim(ClaimTypes.Name, username)
         };
-         claims.AddRange(role.Select(role => new Claim(ClaimTypes.Role, role)));
+
+
+        //  claims.AddRange(role.Select(role => new Claim(ClaimTypes.Role, role)));
+
+         claims.AddRange(permission.Select(permission => new Claim("Permission", permission)));
+
+         claims.AddRange(permission.Select(permission => new Claim("Permission", permission)));
+
+
 
         var token = new JwtSecurityToken(
             issuer: "http://localhost:5110",
